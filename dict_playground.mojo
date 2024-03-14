@@ -1,23 +1,6 @@
 from collections.dict import Dict, KeyElement, DictEntry
 
 
-@value
-struct StringKey(KeyElement):
-    var s: String
-
-    fn __init__(inout self, owned s: String):
-        self.s = s ^
-
-    fn __init__(inout self, s: StringLiteral):
-        self.s = String(s)
-
-    fn __hash__(self) -> Int:
-        return hash(self.s)
-
-    fn __eq__(self, other: Self) -> Bool:
-        return self.s == other.s
-
-
 trait TPet:
     fn __init__(inout self, name: String):
         ...
@@ -126,17 +109,14 @@ fn main() raises:
     my_dogs.start("blueberries.")
 
     # var d = Dict[StringKey, CollectionElement]()  # Compiler crashes
-    var d = Dict[StringKey, Pet[TPet]]()  # Error here
-
-    # var de_cats = DictEntry(StringKey(cats), my_cats)
-    # var de_dogs = DictEntry(StringKey(dogs), my_dogs)
-
-    # d.__setitem__(StringKey(cats), my_cats)
+    var d = Dict[String, Pet[MyPet]]()  # Only works for MyPet, not YourPet
+    # var d = Dict[String, Pet[TPet]]()  # Error here
 
     d[cats] = my_cats
     d[dogs] = my_dogs
 
     print(len(d))  # prints 2
     print(d[cats].name)  # prints 1
+    d[cats].start("iced tea.")
     print(d.pop(dogs).name)  # prints 2
     print(len(d))  # prints 1
