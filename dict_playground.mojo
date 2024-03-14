@@ -20,22 +20,22 @@ struct StringKey(KeyElement):
 
 trait TPet:
     fn __init__(inout self, name: String):
-        pass
+        ...
 
     fn __copyinit__(inout self, existing: Self):
-        pass
+        ...
 
     fn __moveinit__(inout self, owned existing: Self):
-        pass
+        ...
 
     fn __del__(owned self):
-        pass
+        ...
 
     fn name(self) -> String:
-        pass
+        ...
 
     fn start(self, edible: String):
-        pass
+        ...
 
 
 struct MyPet(TPet):
@@ -125,18 +125,18 @@ fn main() raises:
     var my_dogs = Pet(dogs, your_pet)
     my_dogs.start("blueberries.")
 
-    var d = Dict[StringKey, CollectionElement]()  # Compiler crashes
-    # var d = Dict[StringKey, Pet]()  # Error here
+    # var d = Dict[StringKey, CollectionElement]()  # Compiler crashes
+    var d = Dict[StringKey, Pet[TPet]]()  # Error here
 
     # var de_cats = DictEntry(StringKey(cats), my_cats)
     # var de_dogs = DictEntry(StringKey(dogs), my_dogs)
 
     # d.__setitem__(StringKey(cats), my_cats)
 
-    # d[cats] = my_cats
-    # d[dogs] = my_dogs
+    d[cats] = my_cats
+    d[dogs] = my_dogs
 
-    # print(len(d))  # prints 2
-    # print(d[cats].name)  # prints 1
-    # print(d.pop(dogs).name)  # prints 2
-    # print(len(d))  # prints 1
+    print(len(d))  # prints 2
+    print(d[cats].name)  # prints 1
+    print(d.pop(dogs).name)  # prints 2
+    print(len(d))  # prints 1
