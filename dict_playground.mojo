@@ -34,6 +34,9 @@ trait TPet:
     fn name(self) -> String:
         pass
 
+    fn start(self, edible: String):
+        pass
+
 
 struct MyPet(TPet):
     var _name: String
@@ -53,7 +56,10 @@ struct MyPet(TPet):
     fn name(self) -> String:
         return self._name
 
-    fn drinks(self, liquid: String):
+    fn start(self, edible: String):
+        self.drink(edible)
+
+    fn drink(self, liquid: String):
         print(self._name, "drink", liquid)
 
 
@@ -75,7 +81,10 @@ struct YourPet(TPet):
     fn name(self) -> String:
         return self._name
 
-    fn eats(self, food: String):
+    fn start(self, edible: String):
+        self.eat(edible)
+
+    fn eat(self, food: String):
         print(self._name, "eat", food)
 
 
@@ -98,6 +107,9 @@ struct Pet[T: TPet](CollectionElement):
     fn __del__(owned self):
         pass
 
+    fn start(self, edible: String):
+        self.start(edible)
+
 
 fn main() raises:
     alias cats = "Cats"
@@ -107,10 +119,10 @@ fn main() raises:
     var your_pet = YourPet(dogs)
 
     var my_cats = Pet(cats, my_pet)
-    my_cats.pet.drinks("champagne.")
+    my_cats.start("champagne.")
 
     var my_dogs = Pet(dogs, your_pet)
-    my_dogs.pet.eats("blueberries.")
+    my_dogs.start("blueberries.")
 
     # var d = Dict[StringKey, CollectionElement]()
     var d = Dict[StringKey, Pet]()
