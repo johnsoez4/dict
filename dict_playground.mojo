@@ -88,6 +88,7 @@ struct YourPet(TPet):
         print(self._name, "eat", food)
 
 
+@value  # <-- Added 2024-03-14 EzRyder
 struct Pet[T: TPet](CollectionElement):
     var name: String
     var pet: T
@@ -124,8 +125,8 @@ fn main() raises:
     var my_dogs = Pet(dogs, your_pet)
     my_dogs.start("blueberries.")
 
-    # var d = Dict[StringKey, CollectionElement]()  # Compiler crashes
-    var d = Dict[StringKey, Pet]()  # Error here
+    var d = Dict[StringKey, CollectionElement]()  # Compiler crashes
+    # var d = Dict[StringKey, Pet]()  # Error here
 
     # var de_cats = DictEntry(StringKey(cats), my_cats)
     # var de_dogs = DictEntry(StringKey(dogs), my_dogs)
