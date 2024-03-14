@@ -124,8 +124,8 @@ fn main() raises:
     var my_dogs = Pet(dogs, your_pet)
     my_dogs.start("blueberries.")
 
-    # var d = Dict[StringKey, CollectionElement]()
-    var d = Dict[StringKey, Pet]()
+    # var d = Dict[StringKey, CollectionElement]()  # Compiler crashes
+    var d = Dict[StringKey, Pet]()  # Error here
 
     # var de_cats = DictEntry(StringKey(cats), my_cats)
     # var de_dogs = DictEntry(StringKey(dogs), my_dogs)
