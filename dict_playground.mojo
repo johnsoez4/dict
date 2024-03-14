@@ -108,7 +108,7 @@ struct Pet[T: TPet](CollectionElement):
         pass
 
     fn start(self, edible: String):
-        self.start(edible)
+        self.pet.start(edible)
 
 
 fn main() raises:
@@ -126,15 +126,16 @@ fn main() raises:
 
     # var d = Dict[StringKey, CollectionElement]()
     var d = Dict[StringKey, Pet]()
-    var de_cats = DictEntry(StringKey(cats), my_cats)
-    var de_dogs = DictEntry(StringKey(dogs), my_dogs)
 
-    d.__setitem__(StringKey(cats), my_cats)
+    # var de_cats = DictEntry(StringKey(cats), my_cats)
+    # var de_dogs = DictEntry(StringKey(dogs), my_dogs)
 
-    d[cats] = my_cats
-    d[dogs] = my_dogs
+    # d.__setitem__(StringKey(cats), my_cats)
 
-    print(len(d))  # prints 2
-    print(d[cats].name)  # prints 1
-    print(d.pop(dogs).name)  # prints 2
-    print(len(d))  # prints 1
+    # d[cats] = my_cats
+    # d[dogs] = my_dogs
+
+    # print(len(d))  # prints 2
+    # print(d[cats].name)  # prints 1
+    # print(d.pop(dogs).name)  # prints 2
+    # print(len(d))  # prints 1
